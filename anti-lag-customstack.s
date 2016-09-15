@@ -33,7 +33,7 @@ MAIN PROGRAM
 main:
 	/* setup offset */
 	ldr r8, playerOffset		@r8 = player offset
-	ldr r9, playerData			@r9 = base address
+	ldr r9, baseAddress			@r9 = base address
 	ldr r11, [r9]				@r11 = player number
 	mul r10, r8, r11
 	add r10,  r10, r9 			@r10 = base address + player number *  offset
@@ -120,10 +120,18 @@ end:
 VRAIABLES FOR MAIN PROGRAM
 *******************/
 
-tempHP:
-	.long 0x0
-playerData:
-	.long 0x020d9cb8
+
+@ Offset Constants
+baseAddress:
+    	.long 0x020d9cb8
+hpOffset:
+    .long 0xB36
+ddDurationOffset:
+    .long 0xF0C
+scStrengthOffset:
+    .long 0xE98
+
+@Other Constants
 ddDurarion:
 	.long 0xA
 playerOffset:
@@ -131,12 +139,9 @@ playerOffset:
 threshold:
 	.long 0x5
 
-hpOffset:
-    .long 0xB36
-ddDurationOffset:
-    .long 0xF0C
-scStrengthOffset:
-    .long 0xE98
+@Variables
+tempHP:
+    .long 0x0
 
 
 
