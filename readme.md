@@ -8,3 +8,4 @@ This code helps to detect the lag in a Metroid Prime Hunters match by indicating
 * User gets Double Damage for a short time whenever he takes damage
 * Code ignores small damages like Magmaul or lava burn
 * Shock Coil damage is not ignored
+* whenever the opponent has Double Damage on the player regains half of the taken damage
