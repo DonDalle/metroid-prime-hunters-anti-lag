@@ -15,4 +15,4 @@ checkThreshold:
 
 	pop {r0-r12}	bx r14tempHP:	.long 0x0
 playerData:	.long 0x020da558ddDurarion:	.long 0xAplayerOffset:
-	.long 0xF30threshold:	.long 0x5/* for debugging */deathsAddress:	.long 0x20e855c
+	.long 0xF30threshold:	.long 0x5/* for debuggingdeathsAddress:	.long 0x20e855c*/
