@@ -29,37 +29,19 @@ stmdb r0!, {r1-r11, lr}
 MAIN PROGRAM
 *********************/
 
-
 main:
-
-/*
-	ldr r0, baseAddress
-	cmp r0, #0
-	bne codeStart
-	*/
-/*
 	ldr r4, euBase
 	bl checkBasicAddress
-	/*ldr r4, usBase
-	bl checkBasicAddress
-	ldr r4, jpBase
-	bl checkBasicAddress*/
-
-/*
-	ldr r0, baseAddress
-	cmp r0, #0
-	beq end
-	*/
-	/* setup offset */
-	mov r0, #10
 	bl debug
-codeStart:
 
-	ldr r9, baseAddress			@r9 = base address
+
+	/* setup offset */
 	ldr r8, playerOffset		@r8 = player offset
+	ldr r9, baseAddress			@r9 = base address
 	ldr r11, [r9]				@r11 = player number
 	mul r10, r8, r11
 	add r10,  r10, r9 			@r10 = base address + player number *  offset
+
 
 loadHP:
 	/* load current hp and temp hp */
@@ -132,12 +114,6 @@ doHpRestore:
 
 end:
 	strh r5, tempHP			@tempHP = currentHp
-	@debug
-	/*ldr r0, deathsAddress
-	ldr r1, =0x20DB464
-	ldrh r5, [r1]
-	strh r5, [r0]*/
-
 
 /******************
 VRAIABLES FOR MAIN PROGRAM
@@ -145,10 +121,8 @@ VRAIABLES FOR MAIN PROGRAM
 
 
 @ Offset Constants
-
 baseAddress:
-    .long 0x020da558
-
+    	.long 0x020da558
 hpOffset:
     .long 0xB36
 ddDurationOffset:
@@ -184,20 +158,15 @@ bx r12
 Return:
 .long 0x37FBB2C
 
-
 /***************
 CUSTOM FUNCTIONS
 **************/
 
 @assumes address to test in R4
 checkBasicAddress:
-/*
-	ldr r1, hpOffset
-	add r2, r1, r4
-	ldrh r0, [r2]
-	cmp r0, #99
-	streq r4, baseAddress
-	*/
+	ldr r0, hpOffset
+	add r1, r0, r4
+	ldrh r0, [r1]
 	bx lr
 
 
@@ -205,7 +174,6 @@ checkBasicAddress:
 debug:
 	ldr r1, deathsAddress
 	strh r0, [r1]
-
 	bx lr
 /***************
 VARIABLES FOR CUSTOM FUNCTIONS
