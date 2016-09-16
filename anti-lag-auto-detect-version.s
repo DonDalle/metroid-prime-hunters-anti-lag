@@ -30,9 +30,11 @@ MAIN PROGRAM
 *********************/
 
 main:
-	ldr r4, euBase
+
+	ldr r4, jpBase
 	bl checkBasicAddress
-	bl debug
+	
+
 
 
 	/* setup offset */
@@ -121,8 +123,7 @@ VRAIABLES FOR MAIN PROGRAM
 
 
 @ Offset Constants
-baseAddress:
-    	.long 0x020da558
+
 hpOffset:
     .long 0xB36
 ddDurationOffset:
@@ -167,6 +168,8 @@ checkBasicAddress:
 	ldr r0, hpOffset
 	add r1, r0, r4
 	ldrh r0, [r1]
+	cmp r0, #99
+	streq r4, baseAddress
 	bx lr
 
 
@@ -207,3 +210,7 @@ ReferenceLabel:
 .long 0x037FBACC
 mov pc, #0x2000000
 .org CustomStack+0x34
+
+
+baseAddress:
+    	.long 0x0
