@@ -31,9 +31,13 @@ MAIN PROGRAM
 
 main:
 
+	ldr r4, euBase
+	bl checkBasicAddress
+	ldr r4, usBase
+	bl checkBasicAddress
 	ldr r4, jpBase
 	bl checkBasicAddress
-	
+
 
 
 
@@ -165,11 +169,16 @@ CUSTOM FUNCTIONS
 
 @assumes address to test in R4
 checkBasicAddress:
+	ldr r2, baseAddress
+	cmp r2, #0
+	bne checkBasicAddressEnd
+
 	ldr r0, hpOffset
 	add r1, r0, r4
 	ldrh r0, [r1]
 	cmp r0, #99
 	streq r4, baseAddress
+checkBasicAddressEnd:
 	bx lr
 
 
